@@ -116,7 +116,10 @@ html { scroll-behavior: auto; }
 .panel-grupos::-webkit-scrollbar {
   display: none;
 }
-.panel-grupos { position: fixed; scrollbar-width: none; -webkit-overflow-scrolling: touch; overflow-y: hidden; overflow-x: auto; white-space: nowrap; border: 1px solid #000000f5; max-height: 50vh; overflow-y: hidden; left: 0; right: 0; z-index: 906; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
+.panel-subcategorias::-webkit-scrollbar {
+  display: none;
+} 
+.panel-grupos { position: fixed; scrollbar-width: none; -webkit-overflow-scrolling: touch; overflow-y: hidden; overflow-x: auto; white-space: nowrap; cursor: grab; cursor: -webkit-grab; border: 1px solid #000000f5; max-height: 50vh; overflow-y: hidden; left: 0; right: 0; z-index: 906; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
 
 .panel-grupos button { font-family: 'Quicksand'; sans-serif; font-weight: 600; margin: 6px; padding: 2px 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; background: rgba(255, 255, 255, 0.05); color: white; box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s ease; }
 
@@ -257,7 +260,7 @@ html { scroll-behavior: auto; }
   padding: 6px 10px;
 }
 
-.panel-subcategorias { position: fixed; border: 1px solid #000000f5; max-height: 50vh; overflow-y: auto; left: 0; right: 0; z-index: 908; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
+.panel-subcategorias { position: fixed; scrollbar-width: none; -webkit-overflow-scrolling: touch; overflow-y: hidden; overflow-x: auto; white-space: nowrap; cursor: grab; cursor: -webkit-grab; border: 1px solid #000000f5; max-height: 50vh; left: 0; right: 0; z-index: 908; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
 
 .panel-subcategorias button { font-family: 'Quicksand', sans-serif; font-weight: 600; margin: 6px; padding: 1px 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; background: rgba(255, 255, 255, 0.05); color: white; box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s ease; }
 
@@ -273,7 +276,7 @@ html { scroll-behavior: auto; }
 
 .panel-grupos button { font-size: 13px; padding: 1px 6px; border-radius: 8px; }
 
-.panel-subcategorias { padding: 1px 0; max-height: 50vh; overflow-y: auto; }
+.panel-subcategorias { padding: 1px 0; max-height: 50vh; overflow-y: hidden; }
 
 .panel-subcategorias button { font-size: 13px; padding: 1px 6px; border-radius: 8px; }
 
@@ -527,16 +530,52 @@ if (window.email) {
   document.getElementById('volverArriba').onclick = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
+/////////////////////////////////
+function habilitarScrollHorizontal(selector) {
+  const panel = document.querySelector(selector);
+  if (!panel) return;
 
-const panel = document.querySelector('.panel-grupos');
+  // 1️⃣ Scroll horizontal con la rueda del mouse
+  panel.addEventListener('wheel', (e) => {
+    e.preventDefault(); // evita scroll vertical
+    panel.scrollLeft += e.deltaY; // mueve horizontalmente
+  });
 
-panel.addEventListener('wheel', (e) => {
-  // Evita que haga scroll vertical
-  e.preventDefault();
-  // Mueve el scroll horizontal en base al deltaY (rueda)
-  panel.scrollLeft += e.deltaY;
-});
-    
+  // 2️⃣ Scroll horizontal arrastrando con el mouse
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  panel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    panel.classList.add('active'); // opcional: estilo visual
+    startX = e.pageX - panel.offsetLeft;
+    scrollLeft = panel.scrollLeft;
+  });
+
+  panel.addEventListener('mouseleave', () => {
+    isDown = false;
+    panel.classList.remove('active');
+  });
+
+  panel.addEventListener('mouseup', () => {
+    isDown = false;
+    panel.classList.remove('active');
+  });
+
+  panel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - panel.offsetLeft;
+    const walk = (x - startX); // cantidad de movimiento
+    panel.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// Activar en ambos paneles
+habilitarScrollHorizontal('.panel-grupos');
+habilitarScrollHorizontal('.panel-subcategorias');
+////////////////////////////////////////////////////    
 // Configuración de paginación
 const itemsPorPagina = 12;
 let totalPaginas = 0;
