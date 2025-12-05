@@ -527,6 +527,15 @@ if (window.email) {
   document.getElementById('volverArriba').onclick = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
+
+const panel = document.querySelector('.panel-grupos');
+
+panel.addEventListener('wheel', (e) => {
+  // Evita que haga scroll vertical
+  e.preventDefault();
+  // Mueve el scroll horizontal en base al deltaY (rueda)
+  panel.scrollLeft += e.deltaY;
+});
     
 // Configuración de paginación
 const itemsPorPagina = 12;
