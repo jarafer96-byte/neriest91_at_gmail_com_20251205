@@ -42,7 +42,13 @@ body {
     background-position: center;
   }
 }
-
+/* 📱 Solo en pantallas chicas (ej: móviles) */
+@media (max-width: 768px) {
+  .barra-navegacion {
+    border: 1px solid #000000f5; /* borde solo en móvil */
+  }
+}
+  
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }
 /* 📱 Para móviles */
 @media (max-width: 768px) {
@@ -94,7 +100,7 @@ html { scroll-behavior: auto; }
 
 .modo-claro { color: #333; }
 
-.barra-navegacion { position: fixed; border: 1px solid #000000f5; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); display: flex; justify-content: center; gap: 16px; padding: 12px 20px; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
+.barra-navegacion { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); display: flex; justify-content: center; gap: 16px; padding: 12px 20px; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
 
 .barra-navegacion button { font-family: 'Quicksand', sans-serif; font-weight: 600; font-size: 16px; padding: 10px 20px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); color: white; box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); transition: all 0.3s ease; }
 
@@ -107,7 +113,7 @@ html { scroll-behavior: auto; }
 
 .barra-wrapper { z-index: 1000; }
 
-.panel-grupos { position: fixed; top: 54px; border: 1px solid #000000f5; max-height: 50vh; overflow-y: auto; left: 0; right: 0; z-index: 908; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
+.panel-grupos { position: fixed; border: 1px solid #000000f5; max-height: 50vh; overflow-y: auto; left: 0; right: 0; z-index: 908; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); }
 
 .panel-grupos button { font-family: 'Quicksand'; sans-serif; font-weight: 600; margin: 6px; padding: 2px 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; background: rgba(255, 255, 255, 0.05); color: white; box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s ease; }
 
@@ -264,7 +270,7 @@ html { scroll-behavior: auto; }
 
 .panel-grupos button { font-size: 13px; padding: 1px 6px; border-radius: 8px; }
 
-.panel-subcategorias { padding: 1px 0; border: 1px solid #000000f5; max-height: 50vh; overflow-y: auto; }
+.panel-subcategorias { padding: 1px 0; max-height: 50vh; overflow-y: auto; }
 
 .panel-subcategorias button { font-size: 13px; padding: 1px 6px; border-radius: 8px; }
 
