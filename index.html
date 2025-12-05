@@ -264,7 +264,15 @@ html { scroll-behavior: auto; }
 .panel-subcategorias {
   scroll-behavior: smooth; /* hace que el scroll sea animado */
 }
+.panel-grupos,
+.panel-subcategorias {
+  cursor: default; /* cursor normal por defecto */
+}
 
+.panel-grupos:hover,
+.panel-subcategorias:hover {
+  cursor: ew-resize; /* flechas izquierda-derecha al pasar el mouse */
+}
 .panel-subcategorias { position: fixed; scrollbar-width: none; -webkit-overflow-scrolling: touch; overflow-y: hidden; overflow-x: auto; white-space: nowrap; cursor: grab; cursor: -webkit-grab; border: 1px solid #000000f5; max-height: 50vh; left: 0; right: 0; z-index: 908; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(6px); padding: 1px 0; text-align: center; box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); transition: all 0.3s ease; }
 
 .panel-subcategorias button { font-family: 'Quicksand', sans-serif; font-weight: 600; margin: 6px; padding: 1px 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 30px; background: rgba(255, 255, 255, 0.05); color: white; box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.3s ease; }
