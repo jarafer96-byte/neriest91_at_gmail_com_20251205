@@ -549,10 +549,13 @@ function habilitarScrollHorizontal(selector) {
   const panel = document.querySelector(selector);
   if (!panel) return;
 
-  // 1️⃣ Scroll horizontal con la rueda del mouse
+  // 1️⃣ Scroll horizontal con la rueda del mouse (animado)
   panel.addEventListener('wheel', (e) => {
     e.preventDefault(); // evita scroll vertical
-    panel.scrollLeft += e.deltaY; // mueve horizontalmente
+    panel.scrollBy({
+      left: e.deltaY,
+      behavior: 'smooth' // animación suave
+    });
   });
 
   // 2️⃣ Scroll horizontal arrastrando con el mouse
@@ -589,6 +592,7 @@ function habilitarScrollHorizontal(selector) {
 // Activar en ambos paneles
 habilitarScrollHorizontal('.panel-grupos');
 habilitarScrollHorizontal('.panel-subcategorias');
+
 ////////////////////////////////////////////////////    
 // Configuración de paginación
 const itemsPorPagina = 12;
