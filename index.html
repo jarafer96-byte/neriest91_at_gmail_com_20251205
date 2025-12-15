@@ -30,7 +30,16 @@ body {
   padding-top: 70px;
   position: relative;
 }
-
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Oscurece un 40% */
+  z-index: -1;
+}
 /* 📱 PARA MÓVILES - FONDO ANIMADO SIN MAREO */
 @media (max-width: 768px) {
   /* === 1. FONDO ANIMADO SUAVE === */
