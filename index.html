@@ -31,42 +31,39 @@ body {
   position: relative;
 }
 
-/* 📱 Para móviles - Olas rosadas */
+/* 📱 Para móviles - Partículas flotantes */
 @media (max-width: 768px) {
   body {
-    background: 
-      linear-gradient(180deg, #d8b4fe 0%, #c084fc 25%, #a855f7 50%, #9333ea 75%, #7e22ce 100%);
+    background-color: #8a2be2; /* Violeta rosado base */
     min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
-    overflow: hidden;
   }
   
-  /* Olas animadas */
-  body::before,
-  body::after {
+  /* Partículas animadas */
+  body::before {
     content: '';
     position: fixed;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: 
-      radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.3;
+      radial-gradient(circle at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(219, 112, 147, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255, 105, 180, 0.2) 0%, transparent 50%);
+    animation: floatParticles 20s ease-in-out infinite;
     z-index: -1;
-    animation: waveMove 20s linear infinite;
   }
   
-  body::after {
-    background-size: 40px 40px;
-    animation-duration: 15s;
-    animation-direction: reverse;
+  @keyframes floatParticles {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, 20px) scale(1.1); }
+    66% { transform: translate(-20px, 30px) scale(0.9); }
   }
   
-  @keyframes waveMove {
-    0% { transform: rotate(0deg) translate(0, 0); }
-    100% { transform: rotate(360deg) translate(20px, 20px); }
+  .modo-oscuro {
+    color: white;
   }
 }
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
