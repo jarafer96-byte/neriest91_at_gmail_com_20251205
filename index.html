@@ -25,20 +25,33 @@
 
 <style>
 /* CAMBIA TODO EL BLOQUE body por esto: */
+/* PARA PC - Imagen HORIZONTAL */
 body {
   font-family: 'Quicksand', sans-serif;
   background: url("/static/img/fondo.jpg") center / cover fixed no-repeat #000;
   padding-top: 70px;
 }
 
-/* 📱 Para móviles */
+/* 📱 PARA MÓVILES - Imagen VERTICAL */
 @media (max-width: 768px) {
   body {
-    background: url("/static/img/fondo1.jpg") center / cover no-repeat #000;
+    /* Usa la versión VERTICAL específica para móviles */
+    background: url("/static/img/fondo1.jpg) center / cover no-repeat #000 !important;
     background-attachment: scroll !important;
+    min-height: 100vh;
   }
-  .barra-navegacion {
-    border: 1px solid #000000f5; /* borde solo en móvil */
+  
+  /* Opcional: Añadir overlay para oscurecer si es necesario */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: -1;
+    pointer-events: none;
   }
 }
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
