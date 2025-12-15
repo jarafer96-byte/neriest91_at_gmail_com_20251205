@@ -31,40 +31,27 @@ body {
   position: relative;
 }
 
-/* 📱 Para móviles - FONDO ESTÁTICO optimizado */
 @media (max-width: 768px) {
   body {
-    /* 🔥 CAMBIO: Fondo estático sin animaciones */
     background: 
       radial-gradient(circle at 20% 30%, #ec4899 0%, transparent 40%),
       radial-gradient(circle at 80% 70%, #d946ef 0%, transparent 40%),
       #7c3aed;
-    
-    /* ❌ ELIMINA todas las animaciones */
-    /* animation: nebulaPulse 20s ease infinite; */
     background-size: 100% 100%; /* ❌ Cambia 400% 400% por 100% 100% */
     background-attachment: fixed; /* ✅ Fijo, no se mueve */
     min-height: 100vh;
     position: relative;
-    
-    /* ✅ Optimización de texto */
+
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-weight: 400;
   }
-  
-  /* ❌ ELIMINA completamente el body::before animado */
-  /* body::before {
-    animation: glowPulse 8s ease-in-out infinite;
-  } */
-  
-  /* ✅ Tarjetas sin efectos pesados en móviles */
+  .barra-navegacion {
+    border: 1px solid #000000f5; /* borde solo en móvil */
+  }
   .card {
     background: rgba(255, 255, 255, 0.95); /* ❌ Elimina backdrop-filter */
-    /* backdrop-filter: none !important; */ /* Desactiva completamente */
     border: 1px solid rgba(255, 255, 255, 0.3);
-    
-    /* ❌ Desactiva transform en hover para móviles */
     transform: none !important;
     transition: none !important;
   }
@@ -74,9 +61,7 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
   }
 }
-/* 🔥 REGLAS CRÍTICAS PARA SCROLL SUAVE EN MÓVILES */
 @media (max-width: 768px) {
-  /* 1. Desactiva todas las animaciones no esenciales */
   * {
     animation: none !important;
     transition: none !important;
