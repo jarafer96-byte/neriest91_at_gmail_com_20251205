@@ -40,32 +40,23 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: scroll;
+    background-attachment: local; /* Cambia scroll por local */
     
-    /* Añade estas líneas */
     min-height: 100vh;
-    min-height: -webkit-fill-available; /* Para iOS */
-    min-height: 100dvh; /* Nueva unidad estándar */
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
     
-    /* Asegura que cubra toda el área */
-    height: 100%;
-    width: 100%;
+    /* Asegúrate de que el body ocupe todo el contenido */
+    height: auto;
+    min-height: 100vh; /* Doble seguridad */
     
-    /* Previene espacios en blanco */
-    background-color: #000; /* Color de fallback similar al borde de tu imagen */
+    /* Para que el fondo cubra todo el contenido */
+    background-color: #000;
   }
   
-  /* También asegura el html */
   html {
     height: 100%;
     overflow-x: hidden;
-  }
-  
-  .barra-navegacion {
-    border: 1px solid #000000f5;
-  }
-  #adminCard {
-    max-width: 95%;
   }
 }
   
