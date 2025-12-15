@@ -33,21 +33,6 @@ body {
   background-attachment: fixed;
   padding-top: 70px;
 }
-/* 📱 En pantallas chicas (celulares) */
-@media (max-width: 768px) {
-  body {
-    background-size: cover; /* ocupa toda la pantalla */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-  }
-}
-/* 📱 Solo en pantallas chicas (ej: móviles) */
-@media (max-width: 768px) {
-  .barra-navegacion {
-    border: 1px solid #000000f5; /* borde solo en móvil */
-  }
-}
   
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }
 /* 📱 Para móviles */
@@ -56,10 +41,14 @@ h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }
     background-image: url("/static/img/fondo1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     background-position: center;
   }
+  .barra-navegacion {
+    border: 1px solid #000000f5; /* borde solo en móvil */
+  }
 }
+  
 body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: -1; }
 
 .fade-reorder { opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
