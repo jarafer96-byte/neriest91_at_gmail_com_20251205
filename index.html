@@ -35,18 +35,21 @@ body {
 @media (max-width: 768px) {
   /* === 1. FONDO ANIMADO SUAVE === */
   body {
-    /* 🔥 Fondo animado rosado pastel medio oscuro */
+    /* 🔥 Fondo animado rosado pastel medio oscuro - REEMPLAZA la imagen de fondo */
     background: 
       linear-gradient(-45deg, 
         #9d4edd,  /* Violeta rosado oscuro */
         #c77dff,  /* Lila suave */
         #ffafcc,  /* Rosa pastel */
         #ffc8dd    /* Rosa claro */
-      ) fixed no-repeat;
+      ) fixed no-repeat !important;
     
     /* Animación MUY LENTA para no marear */
-    background-size: 300% 300%;
-    animation: gradientFlow 25s ease infinite;
+    background-size: 300% 300% !important;
+    animation: gradientFlow 25s ease infinite !important;
+    
+    /* Asegurar que no haya imagen de fondo */
+    background-image: none !important;
     
     /* Optimizaciones para scroll */
     -webkit-font-smoothing: antialiased;
@@ -165,6 +168,15 @@ body {
   /* === 10. ASEGURAR QUE NADA TAPE LA BARRA === */
   * {
     box-sizing: border-box;
+  }
+  
+  /* === 11. CORRECCIÓN ESPECÍFICA: ELIMINAR IMAGEN DE FONDO POR COMPLETO === */
+  body::before {
+    content: none !important;
+  }
+  
+  .fondo-animado {
+    display: none !important;
   }
 }
 
