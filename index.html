@@ -31,50 +31,92 @@ body {
   position: relative;
 }
 
-/* 📱 PARA MÓVILES - POSICIÓN CORRECTA */
+/* 📱 PARA MÓVILES - FONDO ANIMADO SIN MAREO */
 @media (max-width: 768px) {
-  /* === RESET DE POSICIONAMIENTO === */
+  /* === 1. FONDO ANIMADO SUAVE === */
   body {
-    padding-top: 0 !important; /* ❌ ELIMINA el padding-top */
+    /* 🔥 Fondo animado rosado pastel medio oscuro */
+    background: 
+      linear-gradient(-45deg, 
+        #9d4edd,  /* Violeta rosado oscuro */
+        #c77dff,  /* Lila suave */
+        #ffafcc,  /* Rosa pastel */
+        #ffc8dd    /* Rosa claro */
+      ) fixed no-repeat;
+    
+    /* Animación MUY LENTA para no marear */
+    background-size: 300% 300%;
+    animation: gradientFlow 25s ease infinite;
+    
+    /* Optimizaciones para scroll */
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-weight: 400;
+    padding-top: 0 !important;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
   }
   
-  /* === BARRA DE NAVEGACIÓN FIJA ARRIBA === */
+  @keyframes gradientFlow {
+    0% { 
+      background-position: 0% 50%;
+      filter: brightness(1) saturate(1);
+    }
+    50% { 
+      background-position: 100% 50%;
+      filter: brightness(1.05) saturate(1.1); /* Cambio sutil */
+    }
+    100% { 
+      background-position: 0% 50%;
+      filter: brightness(1) saturate(1);
+    }
+  }
+  
+  /* === 2. BARRA DE NAVEGACIÓN FIJA ARRIBA === */
   .barra-navegacion {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 9999 !important; /* MÁXIMA PRIORIDAD */
+    z-index: 9999 !important;
     width: 100% !important;
     margin: 0 !important;
     padding: 12px 20px !important;
-    background: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(10px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: rgba(0, 0, 0, 0.85) !important; /* Más oscura para contraste */
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important;
   }
   
-  /* === CONTENEDOR PRINCIPAL (empieza DESPUÉS de la barra) === */
+  /* === 3. CONTENEDOR PRINCIPAL === */
   .container.py-5.modo-oscuro {
-    padding-top: 80px !important; /* 🔥 ESPACIO para la barra fija */
+    padding-top: 80px !important;
     margin-top: 0 !important;
+    background: rgba(255, 255, 255, 0.05); /* Fondo sutil para contraste */
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
   }
   
-  /* === LOGO Y ELEMENTOS SUPERIORES === */
+  /* === 4. LOGO Y ELEMENTOS SUPERIORES === */
   .logo-wrapper {
     margin-top: 20px !important;
     padding-top: 10px !important;
   }
   
-  /* === SELECT DE ORDEN DE PRECIO === */
+  /* === 5. SELECT DE ORDEN DE PRECIO === */
   .text-center.mt-5.mb-1 {
-    margin-top: 20px !important; /* 🔥 REDUCIDO para que quede debajo de la barra */
+    margin-top: 20px !important;
     position: relative;
     z-index: 1;
   }
   
-  /* === AÑADE ESTO para evitar superposiciones === */
+  /* === 6. BARRA WRAPPER === */
   .barra-wrapper {
-    height: 70px; /* Altura fija de la barra */
+    height: 70px;
     position: fixed;
     top: 0;
     left: 0;
@@ -82,7 +124,45 @@ body {
     z-index: 10000;
   }
   
-  /* === Asegurar que nada tape la barra === */
+  /* === 7. CARD CON ESTILO ELEGANTE === */
+  .card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  }
+  
+  /* === 8. OPTIMIZACIONES DE TEXTO === */
+  body, p, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+  
+  .card-title, .card-text {
+    color: #333 !important;
+    text-shadow: none;
+  }
+  
+  /* === 9. DESACTIVAR ANIMACIONES DURANTE SCROLL === */
+  .card, .barra-navegacion, .container {
+    animation-play-state: running !important;
+  }
+  
+  /* Pausar animación de fondo durante scroll activo */
+  body.scrolling {
+    animation-play-state: paused !important;
+  }
+  
+  /* === 10. ASEGURAR QUE NADA TAPE LA BARRA === */
   * {
     box-sizing: border-box;
   }
