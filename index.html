@@ -24,32 +24,24 @@
 
 
 <style>
+/* CAMBIA TODO EL BLOQUE body por esto: */
 body {
   font-family: 'Quicksand', sans-serif;
-  background-image: url("/static/img/fondo.jpg");
-  background-size: auto;
-  background-repeat: repeat;
-  background-position: top left;
-  background-attachment: fixed;
+  background: url("/static/img/fondo.jpg") center / cover fixed no-repeat #000;
   padding-top: 70px;
 }
-  
-h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }
+
 /* 📱 Para móviles */
 @media (max-width: 768px) {
   body {
-    background-image: url("/static/img/fondo1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    height: 100vh;
+    background: url("/static/img/fondo1.jpg") center / cover no-repeat #000;
+    background-attachment: scroll !important;
   }
   .barra-navegacion {
     border: 1px solid #000000f5; /* borde solo en móvil */
   }
 }
-  
+h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
 body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: -1; }
 
 .fade-reorder { opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
