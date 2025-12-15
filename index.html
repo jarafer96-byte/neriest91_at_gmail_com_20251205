@@ -74,6 +74,68 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
   }
 }
+/* 🔥 REGLAS CRÍTICAS PARA SCROLL SUAVE EN MÓVILES */
+@media (max-width: 768px) {
+  /* 1. Desactiva todas las animaciones no esenciales */
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* 2. Solo permite transiciones en interacción directa */
+  .card:active {
+    transition: transform 0.1s ease !important;
+    transform: scale(0.98) !important;
+  }
+  
+  /* 3. Mejora el renderizado del texto */
+  body, p, h1, h2, h3, h4, h5, h6, span, div {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+    
+    /* Evita cambios durante scroll */
+    will-change: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* 4. Scroll nativo suave */
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: auto; /* Desactiva smooth scroll JS/CSS */
+  }
+  
+  /* 5. Desactiva efectos visuales pesados */
+  .card, .barra-navegacion, .panel-grupos, .panel-subcategorias {
+    box-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* 6. Fuentes más simples y legibles */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+  
+  .card-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}
+
+
+
+  
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
 
 .fade-reorder { opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
