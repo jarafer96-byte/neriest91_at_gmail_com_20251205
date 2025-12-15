@@ -41,9 +41,28 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: scroll;
+    
+    /* Añade estas líneas */
+    min-height: 100vh;
+    min-height: -webkit-fill-available; /* Para iOS */
+    min-height: 100dvh; /* Nueva unidad estándar */
+    
+    /* Asegura que cubra toda el área */
+    height: 100%;
+    width: 100%;
+    
+    /* Previene espacios en blanco */
+    background-color: #000; /* Color de fallback similar al borde de tu imagen */
   }
+  
+  /* También asegura el html */
+  html {
+    height: 100%;
+    overflow-x: hidden;
+  }
+  
   .barra-navegacion {
-    border: 1px solid #000000f5; /* borde solo en móvil */
+    border: 1px solid #000000f5;
   }
   #adminCard {
     max-width: 95%;
