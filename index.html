@@ -28,18 +28,32 @@ body {
   font-family: 'Quicksand', sans-serif;
   background: url("/static/img/fondo.jpg") center / cover fixed no-repeat #000;
   padding-top: 70px;
-}
-
+}  
 /* 📱 Para móviles */
 @media (max-width: 768px) {
+  html {
+    height: 100%;
+    background: #000; /* Color de respaldo */
+  }
+  
   body {
-    background: url("/static/img/fondo1.jpg") center / cover no-repeat #000;
+    background: url("/static/img/fondo1.jpg") center / cover no-repeat;
     background-attachment: scroll !important;
-    background-size: 100% auto; /* O cover si prefieres */
+    background-color: #000; /* Color de respaldo */
     min-height: 100%;
   }
-  .barra-navegacion {
-    border: 1px solid #000000f5; /* borde solo en móvil */
+  
+  /* Capa oscura sobre el fondo para tapar huecos */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -1;
+    pointer-events: none;
   }
 }
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
