@@ -31,37 +31,32 @@ body {
   position: relative;
 }
 
-/* SOLO para desktop - overlay opcional */
-@media (min-width: 769px) {
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: -1;
-  }
-}
-
-/* 📱 Para móviles - SOLUCIÓN SIMPLE */
+/* 📱 Para móviles - Fondo animado rosado pastel */
 @media (max-width: 768px) {
-  html, body {
-    height: 100%;
-  }
-  
   body {
-    background: url("/static/img/fondo1.jpg") center / cover no-repeat #000 !important;
-    background-attachment: scroll !important;
-    /* Asegurar que cubra todo */
-    background-size: cover !important;
-    background-position: center center !important;
+    background: linear-gradient(-45deg, 
+      #9d4edd,  /* Violeta rosado */
+      #c77dff,  /* Lila suave */
+      #ffafcc,  /* Rosa pastel */
+      #ffc8dd    /* Rosa claro */
+    );
+    background-size: 400% 400%;
+    animation: gradientFlow 15s ease infinite;
+    background-attachment: fixed;
     min-height: 100vh;
+    color: #333;
   }
   
-  .barra-navegacion {
-    border: 1px solid #000000f5;
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .modo-oscuro .card {
+    background: rgba(255, 255, 255, 0.85);
+    color: #333;
+    border: 1px solid rgba(255, 255, 255, 0.3);
   }
 }
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
