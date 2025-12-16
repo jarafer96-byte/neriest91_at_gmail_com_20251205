@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Vista previa</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-  
   <!-- Vista previa para redes sociales -->
   <meta property="og:title" content="HechoConAmor">
   <meta property="og:description" content="">
@@ -29,19 +26,14 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background-image: url("/static/img/fondo.jpg");
-  background-size: auto;
-  background-repeat: repeat;
-  background-position: top left;
-  background-attachment: fixed;
+  background-image: url("/static/img/fondo.jpg") center / cover fixed no-repeat #000;
   padding-top: 70px;
-  padding-bottom: env(safe-area-inset-bottom);
+ 
 }  
 @media (max-width: 768px) {
   body {
-    background-image: url("/static/img/fondo1.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
+    background-image: url("/static/img/fondo.jpg") center / cover no-repeat #000;
+    background-attachment: scroll !important;
   }
 
   .barra-navegacion {
