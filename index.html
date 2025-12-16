@@ -27,20 +27,22 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
-  background: url("/static/img/fondo.jpg") center / cover no-repeat #000;;
+  background: url("/static/img/fondo.jpg") center / cover no-repeat fixed #000;
   padding-top: 70px;
-}  
-  
+  /* Para mejor rendimiento en móviles */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
 @media (max-width: 768px) {
   body {
-    background: url("/static/img/fondo1.jpg");
-    background-attachment: scroll !important;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    /* En móviles usamos un fondo alternativo SIN fixed para mejor rendimiento */
+    background: url("/static/img/fondo1.jpg") center / cover no-repeat #000;
+    /* Esta propiedad ayuda a evitar el "salto" en iOS */
+    background-attachment: initial !important;
   }
   .barra-navegacion {
-    border: 1px solid #000000f5; /* borde solo en móvil */
+    border: 1px solid #000000f5;
   }
   #adminCard {
     max-width: 95%;
