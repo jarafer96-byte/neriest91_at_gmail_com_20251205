@@ -34,13 +34,31 @@ body {
   padding-top: 70px;
 }  
 @media (max-width: 768px) {
+  /* Reset para móviles */
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+  
   body {
     background-image: url("/static/img/fondo1.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 100vh; /* Asegura altura mínima */
-    height: auto; /* Permite que crezca con el contenido */
+    
+    /* Altura inicial - será sobrescrita por JS */
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    
+    /* Prevenir zoom y escalas raras */
+    touch-action: pan-y;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    
+    /* Mejor rendimiento */
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   
   .barra-navegacion {
@@ -49,6 +67,19 @@ body {
   
   #adminCard {
     max-width: 95%;
+  }
+  
+  /* Estilo temporal para debug */
+  .debug-info {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    z-index: 9999;
+    display: none; /* Cambia a block para debug */
   }
 }
 
@@ -539,23 +570,30 @@ if (window.email) {
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
-// Añade este script
+// Script corregido para evitar zoom
 function fixFirstScrollIssue() {
   if (window.innerWidth <= 768) {
     let hasScrolled = false;
     let scrollTimeout;
     
     function updateBodyHeight() {
-      // Usar la altura real del viewport
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      // Obtener altura REAL del viewport (sin las barras de navegación)
+      const realVH = window.innerHeight;
       
-      // Aplicar al body
-      document.body.style.minHeight = `calc(var(--vh, 1vh) * 100)`;
+      // Aplicar altura mínima al body
+      document.body.style.minHeight = realVH + 'px';
+      
+      // También aplicar al html para algunos navegadores
+      document.documentElement.style.height = '100%';
+      
+      // Forzar redibujado
+      document.body.style.backgroundAttachment = 'scroll';
+      
+      console.log('Altura actualizada:', realVH + 'px');
     }
     
-    // Ejecutar al cargar
-    updateBodyHeight();
+    // Ejecutar al cargar con pequeño delay
+    setTimeout(updateBodyHeight, 100);
     
     // Detectar primer scroll
     window.addEventListener('scroll', function() {
@@ -565,19 +603,26 @@ function fixFirstScrollIssue() {
         
         // Pequeño delay para asegurar
         clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateBodyHeight, 100);
+        scrollTimeout = setTimeout(updateBodyHeight, 150);
       }
-    });
+    }, { passive: true });
     
     // También en resize y orientationchange
     window.addEventListener('resize', updateBodyHeight);
     window.addEventListener('orientationchange', function() {
-      setTimeout(updateBodyHeight, 300);
+      setTimeout(updateBodyHeight, 500);
     });
   }
 }
 
-document.addEventListener('DOMContentLoaded', fixFirstScrollIssue);    
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', fixFirstScrollIssue);
+} else {
+  fixFirstScrollIssue();
+}
+
+    
 /////////////////////////////////
 function habilitarScrollHorizontal(selector) {
   const panel = document.querySelector(selector);
