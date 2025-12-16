@@ -26,7 +26,12 @@
 <style>
 
 body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover fixed no-repeat ; padding-top: 70px; }
-
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+  
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
 
 .fade-reorder { opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
