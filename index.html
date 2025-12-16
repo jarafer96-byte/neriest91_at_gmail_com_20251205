@@ -552,9 +552,6 @@ function fixFirstScrollIssue() {
       
       // Aplicar al body
       document.body.style.minHeight = `calc(var(--vh, 1vh) * 100)`;
-      
-      // Forzar repaint en algunos navegadores
-      document.body.style.backgroundAttachment = 'scroll';
     }
     
     // Ejecutar al cargar
