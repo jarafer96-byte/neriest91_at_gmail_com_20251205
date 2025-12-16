@@ -25,34 +25,7 @@
 
 <style>
 
-body {
-  font-family: 'Quicksand', sans-serif;
-  padding-top: 70px;
-  position: relative;
-  min-height: 100vh;
-  margin: 0;
-  overflow-x: hidden;
-}
-
-/* Fondo para desktop */
-.bg-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("/static/img/fondo.jpg") center / cover no-repeat #000;
-  z-index: -1;
-}
-
-@media (max-width: 768px) {
-  .barra-navegacion {
-    border: 1px solid #000000f5;
-  }
-  #adminCard {
-    max-width: 95%;
-  }
-}
+body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover no-repeat #000;; padding-top: 70px; }
 
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
 
@@ -354,7 +327,6 @@ h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }
 </style>
 </head>
 <body class="container py-5 modo-oscuro">
-  <div class="bg-fixed"></div>
 
   <div class="text-center my-5 logo-wrapper">
     <img src="/static/img/logo.png"
