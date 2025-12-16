@@ -33,32 +33,23 @@ body {
   background-position: top left;
   background-attachment: fixed;
   padding-top: 70px;
-  height: 100%;
-  min-height: 100vh;   /* asegura que siempre cubra toda la pantalla */
-  margin: 0;
-  background-color: #000;
 }  
 @media (max-width: 768px) {
   body {
     background-image: url("/static/img/fondo1.jpg");
-    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
   }
+
   .barra-navegacion {
     border: 1px solid #000000f5; /* borde solo en móvil */
   }
+
   #adminCard {
     max-width: 95%;
   }
-  html {
-  height: 100%;
-  min-height: 100vh;   /* asegura que siempre cubra toda la pantalla */
-  margin: 0;
-  background-color: #000; /* respaldo para que nunca aparezca gris/blanco */
-  }  
 }
-  
+
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
   
 body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: -1; }
