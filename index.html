@@ -35,13 +35,26 @@ body {
 }
 
 @media (max-width: 768px) {
-  body {
-    /* En móviles usamos un fondo alternativo SIN fixed para mejor rendimiento */
+  .bg-fixed {
     background: url("/static/img/fondo1.jpg") center / cover no-repeat #000;
-    /* Esta propiedad ayuda a evitar el "salto" en iOS */
-    background-attachment: initial !important;
-    background-size: 100% 100% !important;
+    /* Fuerza el tamaño correcto */
+    background-size: cover !important;
+    -webkit-background-size: cover !important;
   }
+  
+  /* Opcional: ajustar el tamaño si sigue con zoom */
+  .bg-fixed::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
+  
   .barra-navegacion {
     border: 1px solid #000000f5;
   }
