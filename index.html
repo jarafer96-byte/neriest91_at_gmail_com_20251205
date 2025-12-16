@@ -34,70 +34,18 @@ body {
   padding-top: 70px;
 }  
 @media (max-width: 768px) {
-  /* RESET completo para móviles */
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
   body {
-    /* Elimina el background-image del body */
-    background: #000 !important; /* Color sólido como base */
-    padding-top: 70px;
-    position: relative;
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    height: auto !important;
-  }
-  
-  /* Fondo como pseudo-elemento ABSOLUTO (no fixed) */
-  body::before {
-    content: '';
-    position: absolute; /* Cambia de fixed a absolute */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    
     background-image: url("/static/img/fondo1.jpg");
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center;
     background-attachment: scroll;
-    
-    /* Asegurar que cubra TODO el body */
-    min-height: 100%;
-    height: auto;
   }
-  
-  /* Si el contenido es muy largo, extender el pseudo-elemento */
-  body::before {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-  }
-  
   .barra-navegacion {
-    border: 1px solid #000000f5;
-    background: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
-    position: relative;
-    z-index: 1;
+    border: 1px solid #000000f5; /* borde solo en móvil */
   }
-  
   #adminCard {
     max-width: 95%;
-    background: rgba(255, 255, 255, 0.95); /* Fondo para legibilidad */
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Asegurar que todo el contenido esté sobre el fondo */
-  #productos, .container, .contenido-principal, footer, header {
-    position: relative;
-    z-index: 1;
-    background: transparent !important;
   }
 }
 
