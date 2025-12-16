@@ -538,6 +538,49 @@ if (window.email) {
   document.getElementById('volverArriba').onclick = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
+
+// Añade este script
+function fixFirstScrollIssue() {
+  if (window.innerWidth <= 768) {
+    let hasScrolled = false;
+    let scrollTimeout;
+    
+    function updateBodyHeight() {
+      // Usar la altura real del viewport
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      
+      // Aplicar al body
+      document.body.style.minHeight = `calc(var(--vh, 1vh) * 100)`;
+      
+      // Forzar repaint en algunos navegadores
+      document.body.style.backgroundAttachment = 'scroll';
+    }
+    
+    // Ejecutar al cargar
+    updateBodyHeight();
+    
+    // Detectar primer scroll
+    window.addEventListener('scroll', function() {
+      if (!hasScrolled) {
+        hasScrolled = true;
+        updateBodyHeight();
+        
+        // Pequeño delay para asegurar
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateBodyHeight, 100);
+      }
+    });
+    
+    // También en resize y orientationchange
+    window.addEventListener('resize', updateBodyHeight);
+    window.addEventListener('orientationchange', function() {
+      setTimeout(updateBodyHeight, 300);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', fixFirstScrollIssue);    
 /////////////////////////////////
 function habilitarScrollHorizontal(selector) {
   const panel = document.querySelector(selector);
