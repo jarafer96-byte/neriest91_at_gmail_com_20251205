@@ -26,31 +26,56 @@
 <style>
 
 body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover fixed no-repeat ; padding-top: 70px; }
+/* 📱 PARA MÓVILES - FONDO ELEGANTE SIN IMAGEN */
 @media (max-width: 768px) {
   body {
-    background: linear-gradient(45deg,
-      #fff5f7 0%,    /* Rosa muy claro */
-      #f8f7ff 25%,   /* Lila claro */
-      #f0f9ff 50%,   /* Azul claro */
-      #f7fff0 75%,   /* Verde claro */
-      #fff5f7 100%   /* Cierra el ciclo */
-    ) !important;
-    background-size: 400% 400% !important;
-    animation: gradientFlow 20s ease infinite !important;
+    /* Fondo minimalista elegante */
+    background: 
+      linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed !important;
     min-height: 100vh !important;
+    padding-top: 0 !important;
+    margin: 0 !important;
   }
   
-  @keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  /* Overlay sutil para suavizar */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.92) !important;
+    z-index: -1;
   }
   
+  /* Contenedor con efecto vidrio */
   .container.py-5.modo-oscuro {
-    background: rgba(255, 255, 255, 0.88) !important;
-    backdrop-filter: blur(12px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    margin-top: 20px !important;
+    margin-bottom: 40px !important;
+    padding: 25px !important;
+  }
+  
+  /* Cards elegantes */
+  .card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1) !important;
   }
 }
 
