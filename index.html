@@ -28,37 +28,12 @@
 body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover fixed no-repeat ; padding-top: 70px; }
 @media (max-width: 768px) {
   body {
-    position: relative;
-    min-height: 100vh;
-    padding-top: 0;
+    background: none !important; /* El JS se encargará */
   }
   
-  /* Pseudo-elemento que simula el fondo fijo */
-  body::before {
-    content: '';
-    position: fixed; /* ⬅️ Esto se queda fijo */
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    
-    /* Aquí va tu imagen de fondo */
-    background: url("/static/img/fondo1.jpg") no-repeat;
-    background-size: cover;
-    background-position: center 25%; /* Ajusta según necesites */
-    
-    /* Para mejorar rendimiento en móviles */
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-  }
-  
-  /* Asegurar que el contenido esté por encima */
   .container.py-5.modo-oscuro {
-    position: relative;
-    z-index: 1;
     background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
