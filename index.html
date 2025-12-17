@@ -25,29 +25,49 @@
 
 <style>
 
-body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover fixed no-repeat ; padding-top: 70px; }
-/* 📱 PARA MÓVILES - FONDO ELEGANTE SIN IMAGEN */
-@media (max-width: 768px) {
-  body {
-    /* Fondo minimalista elegante */
-    background: 
-      linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed !important;
-    min-height: 100vh !important;
-    padding-top: 0 !important;
-    margin: 0 !important;
-  }
+body { 
+  font-family: 'Quicksand', sans-serif; 
   
-  /* Overlay sutil para suavizar */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.92) !important;
-    z-index: -1;
-  }
+  /* MISMO FONDO PARA PC Y MÓVILES - PASTEL ELEGANTE */
+  background: linear-gradient(135deg,
+    #fff0f5 0%,     /* Rosa lavanda muy claro */
+    #f8f8ff 25%,    /* Lila claro */
+    #f0f8ff 50%,    /* Azul claro pastel */
+    #f5fffa 75%,    /* Verde menta claro */
+    #fff0f5 100%    /* Vuelve al inicio */
+  ) fixed !important;
+  
+  /* Tamaño del gradiente para animación suave */
+  background-size: 400% 400% !important;
+  
+  /* Animación MUY LENTA y sutil */
+  animation: gradientFlow 30s ease infinite !important;
+  
+  padding-top: 70px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Animación del gradiente */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor principal con efecto vidrio */
+.container.py-5.modo-oscuro {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px !important;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+  margin-top: 30px !important;
+  margin-bottom: 40px !important;
+  padding: 30px !important;
 }
 
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
