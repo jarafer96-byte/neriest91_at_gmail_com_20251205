@@ -580,37 +580,95 @@ const modoAdmin = window.tokenAdminEmail ? true : false;
 if (modoAdmin) {
   document.getElementById("adminCard").classList.remove("d-none");
 }   
+
+
+    
 // Fix para fondo fijo en móviles
 function fixMobileBackground() {
+  console.log('📱 fixMobileBackground ejecutándose...');
+  console.log('📏 Ancho ventana:', window.innerWidth, 'px');
+  console.log('📱 ¿Es móvil?', window.innerWidth <= 768);
+  
   if (window.innerWidth <= 768) {
-    const body = document.body;
-    
-    // Crear un div fijo para el fondo
-    let bgFix = document.getElementById('mobile-bg-fix');
-    if (!bgFix) {
-      bgFix = document.createElement('div');
-      bgFix.id = 'mobile-bg-fix';
-      bgFix.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('/static/img/fondo1.jpg') no-repeat center 25% / cover;
-        z-index: -1;
-        pointer-events: none;
-      `;
-      document.body.appendChild(bgFix);
+    // Si ya existe, no hacer nada
+    if (document.getElementById('mobile-bg-fix')) {
+      console.log('✅ Div de fondo móvil ya existe, omitiendo...');
+      return;
     }
     
+    console.log('🛠️ Creando div de fondo móvil...');
+    
+    const bgFix = document.createElement('div');
+    bgFix.id = 'mobile-bg-fix';
+    bgFix.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/static/img/fondo1.jpg') no-repeat center 25% / cover;
+      z-index: -1;
+      pointer-events: none;
+      -webkit-backface-visibility: hidden;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+    `;
+    document.body.appendChild(bgFix);
+    
+    console.log('✅ Div de fondo móvil creado y agregado al DOM');
+    
     // Remover el background del body
-    body.style.background = 'none';
+    document.body.style.background = 'none';
+    console.log('🎨 Background del body eliminado');
+    
+    // Verificar si la imagen carga
+    const img = new Image();
+    img.src = '/static/img/fondo1.jpg';
+    img.onload = function() {
+      console.log('🖼️ Imagen de fondo cargada correctamente:', this.src);
+    };
+    img.onerror = function() {
+      console.error('❌ ERROR: No se pudo cargar la imagen:', this.src);
+    };
+    
+  } else {
+    // En PC, eliminar el div si existe
+    const bgFix = document.getElementById('mobile-bg-fix');
+    if (bgFix) {
+      bgFix.remove();
+      console.log('🖥️ Eliminando div de fondo móvil (modo PC)');
+    }
   }
+  
+  // Información adicional útil
+  console.log('🎯 Body background actual:', getComputedStyle(document.body).background);
+  console.log('📐 Altura body:', document.body.scrollHeight, 'px');
+  console.log('📐 Altura ventana:', window.innerHeight, 'px');
 }
 
-// Ejecutar al cargar y al redimensionar
-window.addEventListener('load', fixMobileBackground);
-window.addEventListener('resize', fixMobileBackground);    
+// También puedes agregar logs a los event listeners
+console.log('🔧 Registrando event listeners para fondo móvil...');
+
+window.addEventListener('load', function() {
+  console.log('🚀 Página cargada, ejecutando fixMobileBackground...');
+  fixMobileBackground();
+});
+
+window.addEventListener('resize', function() {
+  console.log('🔄 Ventana redimensionada, ejecutando fixMobileBackground...');
+  fixMobileBackground();
+});
+
+window.addEventListener('orientationchange', function() {
+  console.log('📱 Orientación cambiada, ejecutando fixMobileBackground...');
+  // Pequeño delay para que tome la nueva orientación
+  setTimeout(fixMobileBackground, 100);
+});
+
+
+
+
+    
 function openModal(src) {
   const modal = document.getElementById("imgModal");
   document.getElementById("modal-img").src = src;
