@@ -24,71 +24,28 @@
 
 
 <style>
-/* RESET Y CONFIGURACIÓN BASE */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-}
-
+/* GRADIENTE SUTIL Y ELEGANTE */
 body { 
   font-family: 'Quicksand', sans-serif; 
   
-  /* FONDO PASTEL ELEGANTE - SOLUCIÓN FUNCIONAL */
-  /* 1. Color de respaldo sólido primero */
-  background-color: #fff0f5;
+  background: linear-gradient(180deg,
+    #ffffff 0%,
+    #fff5f7 25%,
+    #f8f8ff 50%,
+    #f0f8ff 75%,
+    #ffffff 100%
+  ) !important;
   
-  /* 2. Gradiente principal */
-  background-image: linear-gradient(135deg,
-    #fff0f5 0%,     /* Rosa lavanda muy claro */
-    #f8f8ff 25%,    /* Lila claro */
-    #f0f8ff 50%,    /* Azul claro pastel */
-    #f5fffa 75%,    /* Verde menta claro */
-    #fff0f5 100%    /* Vuelve al inicio */
-  );
-  
-  /* 3. Configuración del gradiente */
-  background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: 400% 400%;
-  
-  /* 4. Animación suave */
-  animation: gradientFlow 30s ease infinite;
-  
-  padding-top: 70px;
   min-height: 100vh;
+  padding-top: 70px;
   margin: 0;
 }
 
-/* Animación del gradiente */
-@keyframes gradientFlow {
-  0% { 
-    background-position: 0% 50%;
-  }
-  50% { 
-    background-position: 100% 50%;
-  }
-  100% { 
-    background-position: 0% 50%;
-  }
-}
 
-/* Contenedor principal con efecto vidrio */
-.container.py-5.modo-oscuro {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 20px;
-  box-shadow: 
-    0 10px 40px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  margin-top: 30px;
-  margin-bottom: 40px;
-  padding: 30px;
-}
 
+
+  
 h1, h2, h3, .btn, .card { font-family: 'Quicksand', sans-serif; }  
 
 .fade-reorder { opacity: 0; transform: scale(0.95); transition: opacity 0.3s ease, transform 0.3s ease; }
