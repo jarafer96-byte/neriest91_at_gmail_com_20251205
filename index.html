@@ -28,10 +28,29 @@
 body { font-family: 'Quicksand', sans-serif; background: url("/static/img/fondo.jpg") center / cover fixed no-repeat ; padding-top: 70px; }
 @media (max-width: 768px) {
   body {
-    background: url("/static/img/fondo1.jpg") no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center 30%;
+    background: linear-gradient(45deg,
+      #fff5f7 0%,    /* Rosa muy claro */
+      #f8f7ff 25%,   /* Lila claro */
+      #f0f9ff 50%,   /* Azul claro */
+      #f7fff0 75%,   /* Verde claro */
+      #fff5f7 100%   /* Cierra el ciclo */
+    ) !important;
+    background-size: 400% 400% !important;
+    animation: gradientFlow 20s ease infinite !important;
+    min-height: 100vh !important;
+  }
+  
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .container.py-5.modo-oscuro {
+    background: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08) !important;
   }
 }
 
